@@ -10,6 +10,17 @@ GET_RANDOM_URL = 'talk_url = () => talks[Math.floor(Math.random() * talks.length
 
 UPDATE_URL_WITH_TALK = 'set_talk_link = () => document.getElementById("talk_link").href = talk_url();'
 
+GET_YEAR_MONTH_OF_LATEST_TALK = """split_url = talks[0].split('/');
+if (split_url.length > 1) {
+  year = split_url[split_url.length - 3];
+  month = split_url[split_url.length - 2];
+
+} else {
+  console.log('Unable to split the latest talk url.');
+}
+console.log(year + ' ' + month);
+"""
+
 if __name__ == '__main__':
     doc, tag, text, line = Doc().ttl()
 
@@ -24,16 +35,20 @@ if __name__ == '__main__':
             with tag('script'):
                 doc.asis(GET_RANDOM_URL)
                 doc.asis(UPDATE_URL_WITH_TALK)
+                doc.asis(GET_YEAR_MONTH_OF_LATEST_TALK)
 
         with tag('body'):
             with tag('div', klass='container'):
                 line('h1', 'Conference Talk Randomizer')
                 doc.stag('hr')
 
-                with tag('div'):
+                with tag('p'):
+                    text('Instructions...')
+
+                with tag('p'):
                     with tag('a', href='', id='talk_link'):
-                        text('what to put here?')
-                with tag('div'):
+                        text('Click here to open a talk')
+                with tag('p'):
                     doc.stag('input', type='button', onclick='set_talk_link()',
                              value='Click to get a different random talk')
 
