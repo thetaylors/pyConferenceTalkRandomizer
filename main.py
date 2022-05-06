@@ -51,7 +51,10 @@ if __name__ == '__main__':
                     ),
                 div({'class': 'container'}, children=[
                     hr(),
-                    p('This website is NOT an official website of The Church of Jesus Christ of Latter-day Saints.')
+                    p(children=['This website is NOT an official website of ',
+                                a({'href': 'https://www.churchofjesuschrist.org/'},
+                                  'The Church of Jesus Christ of Latter-day Saints.')
+                                ])
                 ])
             ])
         ])
