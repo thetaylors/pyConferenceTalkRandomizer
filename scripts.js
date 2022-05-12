@@ -10,15 +10,14 @@ let get_random_url_only_latest = () => {
 }
 
 let set_talk_link = (show_badge=false) => {
-    // TODO read the page's check box to get user' preference
-    if (get_random_boolean()) {
-//        console.log('was true');
+    if (document.getElementById('prioritize_latest').checked || get_random_boolean()) {
         talk_url = get_random_url_only_latest();
     } else {
-//        console.log('was false');
         talk_url = get_random_url();
     }
     document.getElementById("talk_link").href = talk_url;
+    console.log(talk_url);
+
     if (show_badge) {
         badge_elem = document.getElementById('badge');
         if (badge_elem.className == 'badge bg-info') {
@@ -60,3 +59,20 @@ let no_of_talks_in_latest_conf = (year, month) => {
         return talk_step;
 }
 
+let save_checkbox_state = () => {
+    checkbox = document.getElementById('prioritize_latest');
+    window = document.defaultView;
+    window.localStorage.setItem('checkbox_state', checkbox.checked);
+}
+
+let read_checkbox_state = () => {
+    window = document.defaultView;
+    return (window.localStorage.getItem('checkbox_state') === 'true');
+}
+
+let set_checkbox_state = () => {
+    checkbox = document.getElementById('prioritize_latest');
+    new_state = read_checkbox_state();
+    console.log('new state: ' + new_state)
+    checkbox.checked = new_state;
+}

@@ -42,13 +42,19 @@ if __name__ == '__main__':
                         span('&nbsp;'),
                         span({'id': 'badge'})
                       ]),
-                    # TODO p([
-                    #     input_({'type': 'checkbox', 'id': 'prioritize_latest'}),
-                    #     label({'for': 'prioritize_latest'},
-                    #           children='&nbsp;Check the box (and refresh or click the button) to get a random talk from just the last conference...'),
-                    # ]),
+                    p([
+                        input_({'type': 'checkbox', 'id': 'prioritize_latest', 'onclick': 'save_checkbox_state()',
+                               'keydown': 'save_checkbox_state()'}),
+                        '&nbsp;',
+                        label({'for': 'prioritize_latest'},
+                              children=[
+                                  # 'Check the box (and click the button or refresh the page) to get a random talk limited to the last conference.'),
+                                  'When checked, random talks will be limited to the most recent conference.'
+                              ])
+                      ]),
                     p(' Click the button to change the link to a different random talk, or refresh the page.'),
                     p(input_({'type': 'button', 'onclick': 'set_talk_link(show_badge=true)', 'value': 'Change talk link'})),
+                    script('set_checkbox_state();'),
                     script('set_talk_link();')
                 ]),
                 div({'class': 'container'}, hr()),
