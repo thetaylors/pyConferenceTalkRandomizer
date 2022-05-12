@@ -9,7 +9,7 @@ let get_random_url_only_latest = () => {
     return talks[Math.floor(Math.random() * no_of_talks_in_latest_conf(date_of_latest.year, date_of_latest.month))];
 }
 
-let set_talk_link = () => {
+let set_talk_link = (show_badge=false) => {
     // TODO read the page's check box to get user' preference
     if (get_random_boolean()) {
 //        console.log('was true');
@@ -19,6 +19,17 @@ let set_talk_link = () => {
         talk_url = get_random_url();
     }
     document.getElementById("talk_link").href = talk_url;
+    if (show_badge) {
+        badge_elem = document.getElementById('badge');
+        if (badge_elem.className == 'badge bg-info') {
+            badge_class_val = 'badge bg-primary';
+        } else {
+            badge_class_val = 'badge bg-info';
+        }
+
+        badge_elem.innerText = 'Updated link';
+        badge_elem.className = badge_class_val;
+    }
 }
 
 let check_or_uncheck = () => {
