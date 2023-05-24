@@ -6,4 +6,4 @@ Generates a static webpage that when loaded creates a link to a talk given in a 
 The page will randomly (50/50 chance) pick a talk from a list of talks given at the most recent conference (dynamically
 generated from the full list) or from all conferences (since April 1971).
 
-Page currently hosted at [http://random-conference-talk.s3-website-us-west-2.amazonaws.com/](http://random-conference-talk.s3-website-us-west-2.amazonaws.com/)
+Page currently hosted at [https://prod.d2nd1pzhb3gkt9.amplifyapp.com/](https://prod.d2nd1pzhb3gkt9.amplifyapp.com/)
